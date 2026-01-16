@@ -31,6 +31,7 @@ export default function Home() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [generationInfo, setGenerationInfo] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -70,6 +71,14 @@ export default function Home() {
       }
     };
   }, [audioUrl]);
+
+  useEffect(() => {
+    if (audioUrl) {
+      URL.revokeObjectURL(audioUrl);
+      setAudioUrl(null);
+    }
+    setGenerationInfo(null);
+  }, [downloadVoice, rate, text]);
 
   const voiceOptions = useMemo(() => {
     return voices.map((voice) => ({
@@ -146,6 +155,7 @@ export default function Home() {
         URL.revokeObjectURL(audioUrl);
       }
       setAudioUrl(URL.createObjectURL(blob));
+      setGenerationInfo(`Voice: ${downloadVoice}, speed: ${rate.toFixed(2)}x`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unexpected error.");
     } finally {
@@ -244,6 +254,7 @@ export default function Home() {
           {audioUrl && (
             <div>
               <audio className="audio" controls src={audioUrl} />
+              {generationInfo && <div className="status">{generationInfo}</div>}
               <div className="actions">
                 <a
                   href={audioUrl}
