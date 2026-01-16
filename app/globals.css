@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+:root {
+  --bg-1: #f7f1e8;
+  --bg-2: #f2d6b3;
+  --ink-1: #1f1a16;
+  --ink-2: #5f5246;
+  --accent-1: #e96f1c;
+  --accent-2: #1e7f6a;
+  --card: #fff8f1;
+  --ring: rgba(233, 111, 28, 0.35);
+  --shadow: 0 20px 45px rgba(31, 26, 22, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  color: var(--ink-1);
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(233, 111, 28, 0.12), transparent 55%),
+    radial-gradient(900px 700px at 90% 10%, rgba(30, 127, 106, 0.18), transparent 55%),
+    linear-gradient(160deg, var(--bg-1), var(--bg-2));
+  min-height: 100vh;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 20px 72px;
+}
+
+header {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+header h1 {
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  margin: 0;
+}
+
+header p {
+  margin: 0;
+  color: var(--ink-2);
+  max-width: 720px;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(31, 26, 22, 0.08);
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-family: "Fraunces", serif;
+  font-size: 1.2rem;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 160px;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 26, 22, 0.15);
+  padding: 14px;
+  font-size: 1rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  background: #fff;
+  resize: vertical;
+  outline: none;
+}
+
+textarea:focus,
+select:focus,
+input[type="range"]:focus {
+  box-shadow: 0 0 0 4px var(--ring);
+  border-color: var(--accent-1);
+}
+
+select {
+  width: 100%;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(31, 26, 22, 0.15);
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+.control {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.range-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent-1);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+button.primary {
+  background: var(--accent-1);
+  color: #fff;
+  box-shadow: 0 12px 25px rgba(233, 111, 28, 0.35);
+}
+
+button.secondary {
+  background: #fff;
+  color: var(--ink-1);
+  border: 1px solid rgba(31, 26, 22, 0.2);
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--ink-1);
+  border: 1px dashed rgba(31, 26, 22, 0.25);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(31, 26, 22, 0.18);
+}
+
+.status {
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  margin-top: 8px;
+}
+
+.audio {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+footer {
+  margin-top: 36px;
+  color: var(--ink-2);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: 32px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}
